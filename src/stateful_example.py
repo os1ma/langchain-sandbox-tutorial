@@ -8,17 +8,12 @@ sandbox = PyodideSandbox(
     allow_net=True,
 )
 
-code = """\
-import numpy as np
-x = np.array([1, 2, 3])
-print(x)
-"""
-
 
 async def main() -> None:
-    # Execute Python code
-    result = await sandbox.execute(code)
+    result = await sandbox.execute("a = 1", session_id="123")
     pprint.pprint(result)
+    result2 = await sandbox.execute("print(a)", session_id="123")
+    pprint.pprint(result2)
 
 
 if __name__ == "__main__":
